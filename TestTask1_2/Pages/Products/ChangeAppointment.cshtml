@@ -1,0 +1,62 @@
+﻿@page
+@model ChangeAppointmentModel
+@{
+    ViewData["Title"] = "Changing Appointment";
+}
+<h2>@ViewData["Title"]</h2>
+<br />
+<div asp-validation-summary="All"></div>
+<a asp-page="Index">Home</a>
+<p><strong>Add Appointment for Category: @Model.CategoryToShow.Name</strong></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Appointment Description</th>
+            <th>Date Create</th>
+            <th>Date End Of Actuality</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Appointment appointment in Model.AppointmentListToAdd)
+        { 
+            <tr>
+                <td>@appointment.Description</td>
+                <td>@appointment.DateCreate</td>
+                <td>@appointment.DateEndOfActuality</td>
+                <td>
+                    <form method="post">
+                        <button type="submit" asp-page-handler="add" asp-route-CategoryId="@Model.CategoryId" asp-route-AppointmentId="@appointment.Id">Add</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<p><strong>Remove Appointment for Category: @Model.CategoryToShow.Name</strong></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Appointment Description</th>
+            <th>Date Create</th>
+            <th>Date End Of Actuality</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Appointment appointment in Model.AppointmentListToDelete)
+        {
+            <tr>
+                <td>@appointment.Description</td>
+                <td>@appointment.DateCreate</td>
+                <td>@appointment.DateEndOfActuality</td>
+                <td>
+                    <form method="post">
+                        <button type="submit" asp-page-handler="delete" asp-route-CategoryId="@Model.CategoryId" asp-route-appointmentid="@appointment.Id">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

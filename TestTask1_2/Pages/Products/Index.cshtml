@@ -1,0 +1,51 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "List of Categories with Appointments";
+}
+<h2>@ViewData["Title"]</h2>
+
+<p><a asp-page="CreateAppointment">Create new Appointment</a> - <a asp-page="Appointments">View List of Appointments</a></p>
+<p><a asp-page="CreateCategory">Create new Category</a> - <a asp-page="Categories">View List of Categories</a></p>
+<br />
+<form method="post">
+    <input type="submit" asp-page-handler="All" value="Show All Appointments" />
+    <br />
+    <input type="submit" asp-page-handler="Actual" value="Show Actual Appointments" />
+</form>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Category Name</th>
+            <th>Category Description</th>
+            <th>Appointment Description</th>
+            <th>Date Create</th>
+            <th>Date End Of Actuality</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Category category in Model.CategoryList)
+        { 
+            <tr>
+                <td>@category.Name</td>
+                <td>@category.Description</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a asp-page="ChangeAppointment" asp-route-CategoryId="@category.Id">Change Appointments</a></td>
+            </tr>
+            foreach (Appointment appointment in category.Appointments)
+            { 
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>@appointment.Description</td>
+                    <td>@appointment.DateCreate</td>
+                    <td>@appointment.DateEndOfActuality</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

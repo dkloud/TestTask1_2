@@ -1,0 +1,29 @@
+﻿@page
+@model AppointmentsModel
+@{
+    ViewData["Title"] = "Appointments List";
+}
+<h2>@ViewData["Title"]</h2>
+
+<a asp-page="Index">Home</a>
+<table class="table">
+    <thead>
+        <tr><th>Appointment Description</th><th>Date Create</th><th>Date End of Actuality</th></tr>
+    </thead>
+    <tbody>
+        @foreach (Appointment appointment in Model.AppointmentList)
+        {
+            <tr>
+                <td>@appointment.Description</td>
+                <td>@appointment.DateCreate</td>
+                <td>@appointment.DateEndOfActuality</td>
+                <td>
+                    <form method="post">
+                        <a asp-page="EditAppointment" asp-route-id="@appointment.Id">Edit</a>
+                        <button type="submit" asp-page-handler="delete" asp-route-id="@appointment.Id">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

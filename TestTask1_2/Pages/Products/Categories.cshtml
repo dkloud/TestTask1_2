@@ -1,0 +1,31 @@
+﻿@page
+@model CategoriesModel
+@{
+    ViewData["Title"] = "Category List";
+}
+<h2>@ViewData["Title"]</h2>
+
+<a asp-page="Index">Home</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Category Name</th>
+            <th>Category Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Category category in Model.CategoryList)
+        {
+            <tr>
+                <td>@category.Name</td>
+                <td>@category.Description</td>
+                <td>
+                    <form method="post">
+                        <a asp-page="EditCategory" asp-route-id="@category.Id">Edit</a>
+                        <button type="submit" asp-page-handler="delete" asp-route-id="@category.Id">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

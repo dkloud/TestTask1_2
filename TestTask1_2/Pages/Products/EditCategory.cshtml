@@ -1,0 +1,22 @@
+﻿@page
+@model EditCategoryModel
+@{
+    ViewData["Title"] = "Editing Category";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div asp-validation-summary="All"></div>
+<form method="POST">
+    <div>
+        <label>Name</label><br />
+        <input asp-for="Category.Name" type="text" />
+    </div>
+    <div>
+        <label>Description</label><br />
+        <textarea asp-for="Category.Description"></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Edit" />
+    </div>
+</form>

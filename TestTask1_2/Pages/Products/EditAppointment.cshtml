@@ -1,0 +1,19 @@
+﻿@page
+@model EditAppointmentModel
+@{
+    ViewData["Title"] = "Editing Appointment";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div asp-validation-summary="All"></div>
+<form method="post">
+    <div>
+        <label>Description</label><br />
+        <textarea asp-for="Appointment.Description"></textarea>
+    </div>
+    <div>
+        <label>Date End of Actuality</label><br />
+        <input asp-for="Appointment.DateEndOfActuality" type="datetime-local" />
+    </div>
+    <input type="submit" value="Edit" />
+</form>
